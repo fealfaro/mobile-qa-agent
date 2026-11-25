@@ -115,8 +115,17 @@ def _profiles_list() -> list[dict]:
     return out
 
 
+def _app_basic(pid: str | None) -> dict:
+    if not pid:
+        return {}
+    a = load_app(pid)
+    return {"id": a.id, "name": a.name, "android_package": a.android.package, "ios_bundle": a.ios.bundle_id,
+            "stores": {k: v.model_dump() for k, v in a.stores.items()},
+            "store_icon": next((s.icon for s in a.stores.values() if s.icon), None)}
+
+
 def _fast(pid: str | None) -> dict:
-    return {"profile_id": pid, "profiles": _profiles_list(), "suites": _suites(pid), "history": _history(pid),
+    return {"profile_id": pid, "app_basic": _app_basic(pid), "profiles": _profiles_list(), "suites": _suites(pid), "history": _history(pid),
             "active_run": STATE.active.run_id if _busy() else None,
             "active_kind": STATE.active.kind if _busy() else None,
             "last_live_run": STATE.active.run_id if STATE.active and STATE.active.profile == pid else None,

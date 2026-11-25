@@ -335,7 +335,7 @@ document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if
 // ------------------------------------------------------------ carga
 async function loadFast(){
   const f=await api("/api/suites");
-  if(!S.o){S.o={...f,_partial:true,app:{},devices:[],install_state:"unknown"};renderAll()}
+  if(!S.o){S.o={...f,_partial:true,app:f.app_basic||{},devices:[],install_state:"unknown"};S.pid=f.profile_id;renderAll()}
   if(!S.run&&(f.active_run||f.last_live_run))attach(f.active_run||f.last_live_run,f.active_kind||f.last_live_kind);
 }
 async function loadOverview(refresh=false){
