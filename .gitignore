@@ -1,0 +1,15 @@
+.venv
+.venv.nosync/
+__pycache__/
+*.egg-info/
+.env
+# Evidencias de ejecución: pueden contener datos personales de cuentas de prueba
+runs/
+builds/
+# Perfiles de app: repositorio aparte (catálogo). Clonar en ./profiles
+profiles/
+# Baselines visuales: screenshots reales de la cuenta (nombre, montos). Se regeneran con
+# `qa-agent run` + `qa-agent baseline approve <run_id>`.
+baselines/
+config/calibration/*.draft.yaml
+.DS_Store

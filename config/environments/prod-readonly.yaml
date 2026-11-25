@@ -1,0 +1,7 @@
+# Ambiente: app productiva AS IS con cuenta de prueba autorizada, solo lectura.
+name: prod-readonly
+description: App AS IS publicada, cuenta de prueba autorizada, solo validaciones de lectura y navegación no transaccional.
+allow_transactions: false
+appium_url: http://127.0.0.1:4723
+new_command_timeout_s: 300
+capabilities: {}
